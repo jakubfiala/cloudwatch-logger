@@ -2,6 +2,12 @@
 
 This AWS CloudWatch logger library is designed to support the use case where apps don't necessarily run continuously, therefore needing to exit after all work has been completed. It is meant to be a thin wrapper around the AWS SDK's `CloudWatchLogs` class with an API similar to `console.log`, but asynchronous by leveraging Promises.
 
+```bash
+npm install cloudwatch-logger --save
+```
+
+### Usage
+
 With ES2017's async-await syntax, using `cloudwatch-logger` is as simple as:
 
 ```js
