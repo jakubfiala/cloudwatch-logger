@@ -1,4 +1,4 @@
-# cloudwatch-logger
+# ☁️ 👀 cloudwatch-logger
 
 This AWS CloudWatch logger library is designed to support the use case where apps don't necessarily run continuously, therefore needing to exit after all work has been completed. It is meant to be a thin wrapper around the AWS SDK's `CloudWatchLogs` class with an API similar to `console.log`, but asynchronous by leveraging Promises.
 
@@ -14,8 +14,8 @@ const config = {
   accessKeyId: '<AWS accessKeyId>',
   secretAccessKey: '<AWS secret>',
   region: '<AWS region>',
-  logGroupName: 'myLogGroup',
-  logStreamName: 'myLogStream'
+  logGroupName: '<myLogGroup>',
+  logStreamName: '<myLogStream>'
 };
 
 const logger = new CloudWatchLogger(config);
@@ -29,9 +29,24 @@ const logger = new CloudWatchLogger(config);
   /* logResult is the response object returned by CloudWatchLogs API `putLogEvents` method, see:
    * http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CloudWatchLogs.html#putLogEvents-property
    *
-   * the messages are bundled into a single `putLogEvents` call
+   * the messages are bundled into a single `putLogEvents` call with timestamps set to current UNIX time
    */
   const logResult = await logger.log('Message1', { objects: 'are serialised to JSON' }, 123);
+
+  // we can access the underlying AWS SDK CloudWatchLogs object if we want to do fancy things
+  const CloudWatchLogs = logger.getAWSObject();
+  // … fancy things …
 })();
 
 ```
+
+### Requirements
+
+* An AWS account with CloudWatch Logs write permissions
+* Node.js 7.6+ for *async-await* support
+
+
+### Notes
+
+* this library was designed for a rather specific use case and currently does not handle cases like non-existent log groups. Contributions to increase robustness are more than welcome!
+
