@@ -29,7 +29,7 @@ const logger = new CloudWatchLogger(config);
 // let's make an async IIF so we can `await`
 (async () => {
   // the connect() method returns the logger instance itself
-  // it creates
+  // and creates a new logStream
   await logger.connect();
 
   /* logResult is the response object returned by CloudWatchLogs API `putLogEvents` method, see:
