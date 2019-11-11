@@ -15,13 +15,14 @@ const CloudWatchLogger = require('cloudwatch-logger');
 
 // this Logger assumes an existing logGroup,
 // but creates a new logStream
-// all config fields are compulsory
 const config = {
   accessKeyId: '<AWS accessKeyId>',
   secretAccessKey: '<AWS secret>',
   region: '<AWS region>',
   logGroupName: '<myLogGroup>',
-  logStreamName: '<myLogStream>'
+  logStreamName: '<myLogStream>',
+  // optional (for temporary credentials)
+  sessionToken: '<mySessionToken>',
 };
 
 const logger = new CloudWatchLogger(config);
