@@ -5,8 +5,7 @@ const getCloudWatchLogs = ({ accessKeyId, secretAccessKey, region }) => new aws.
   region,
   credentials: {
     accessKeyId,
-    secretAccessKey,
-    region
+    secretAccessKey
   }
 });
 
